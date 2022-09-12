@@ -1,1 +1,46 @@
-<h1>Simon Says</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simon Says</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/script.js"></script>
+</head>
+<body>
+
+  <div class="container">
+    <div id="outer-circle">
+      <div id="red"></div>
+      <div id="blue"></div>
+      <div id="green"></div>
+      <div id="yellow"></div>
+
+      <div id="inner-circle">
+        <div id="title">SIMON</div>
+
+            <div class="main-buttons">
+              <button class="button" id="start">Start</button>
+              <button class="button" id="reset">Reset</button>
+            </div>
+            <div class="strike-counter">
+              <div class="counter">
+                <span>Player 1</span>
+                <div id="player-one-count"></div>
+            </div>
+            <div class="counter">
+                <span>Player 2</span>
+                <div id="player-two-count"></div>
+            </div>
+          </div>
+              <!-- <div class="speed-buttons">
+              <button class="arrow" id="increase-speed"></button>
+              <button class="arrow" id="decrease-speed"></button>
+            </div> -->
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>
