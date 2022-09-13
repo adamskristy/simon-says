@@ -1,3 +1,4 @@
+
 .container{
   outline: 1px solid sienna;
   height: 600px;
@@ -7,13 +8,13 @@
   justify-content: center; 
 }
 
-#outer-circle{
-  background-color: black;
+/* #outer-circle{
+    background-color: black;
   border-radius: 50%;
   border-width: 15px;
   height: 500px;
   width: 500px;
-}
+} */
 
 #green {
   position: absolute;
@@ -98,66 +99,76 @@
 }
 
 #title {
-  /* outline: 1px solid yellow; */
-  font-family:'Courier New', Courier, monospace;
+  /* outline: 1px solid yellowgreen; */
   /* position: absolute; */
   font-size: 40px;
-  margin-top: -40px;
-}
-
-.main-buttons{
-  /* outline: 1px solid yellow; */
-  height: 60px;
-  width: 70px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  margin-top: -120px;
 }
 
 .button {
-  border-radius: 50% !important;
   font-size: 1em;
-  background-color: lightgray;
 }
 
-.counter{
-  /* outline: 1px solid yellow; */
-  height: 80px;
+.toggle {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.toggle-text {
+  /* outline: 1px solid orchid; */
+  display: flex;
+  justify-content: space-between;
+  width: 210px;
+  position: absolute;
+  /* margin-left: 80px;
+  margin-right: 10px; */
+  margin-top: -30px;
+}
+
+.toggle-text span:last-child {
+  padding-left: 70px;
+}
+
+.counters{
+  /* outline: 1px solid orangered; */
+  height: 50px;
+  width: 70px;;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
-.strike-counter{
-  /* outline: 1px solid yellow; */
-  height: 50px;
+.counter-box{
+  /* outline: 1px solid purple; */
+  position: absolute;
+  margin-top: 100px;;
+  height: 120px;
   width: 200px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-around;
-
 }
 
-#player-one-count {
+#strike {
   background: #330000;
   color: red;
-  font-family: courier;
+  font-family:'Courier New', Courier, monospace;
   font-size: 20px;
   height: 30px;
   width: 50px;
-  margin-top: 10px;
   text-align: center;
   vertical-align: middle;
   line-height: 30px;
 }
 
-#player-two-count {
+#turn {
   background: #330000;
   color: red;
-  font-family: courier;
+  font-family:'Courier New', Courier, monospace;
   font-size: 20px;
   height: 30px;
   width: 50px;
-  margin-top: 10px; 
   text-align: center;
   vertical-align: middle;
   line-height: 30px;

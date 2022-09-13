@@ -20,18 +20,22 @@
       <div id="inner-circle">
         <div id="title">SIMON</div>
 
-            <div class="main-buttons">
-              <button class="button" id="start">Start</button>
-              <button class="button" id="reset">Reset</button>
+        <div id="switches">
+          <input type="checkbox" class="toggle" id="on">
+          <button class="button" id="start">Start</button>
+          <input type="checkbox" class="toggle" id="strict">
+        </div>
+        <div class="toggle-text">
+          <span>POWER</span><span>STRICT</span>
+        </div>
+            <div class="counter-box">
+              <div class="counters">
+                <span id="player">STRIKES</span>
+                <div id="strike"></div>
             </div>
-            <div class="strike-counter">
-              <div class="counter">
-                <span>Player 1</span>
-                <div id="player-one-count"></div>
-            </div>
-            <div class="counter">
-                <span>Player 2</span>
-                <div id="player-two-count"></div>
+            <div class="counters">
+                <span>COUNT</span>
+                <div id="turn"></div>
             </div>
           </div>
               <!-- <div class="speed-buttons">
