@@ -1,6 +1,6 @@
 
 .container{
-  outline: 1px solid sienna;
+  /* outline: 1px solid sienna; */
   height: 600px;
   width: 100%;
   display: flex;
@@ -16,7 +16,9 @@
   width: 500px;
 } */
 
-#green {
+/* Change color ids back to topleft, topright... */
+
+#topleft {
   position: absolute;
   height: 250px;
   width: 250px;
@@ -30,7 +32,7 @@
   box-sizing: border-box;
 }
 
-#red {
+#topright {
   position: absolute;
   height: 250px;
   width: 250px;
@@ -45,7 +47,7 @@
   
 }
 
-#yellow {
+#bottomleft {
   position: absolute;
   height: 250px;
   width: 250px;
@@ -61,7 +63,7 @@
   box-sizing: border-box;
 }
 
-#blue {
+#bottomright {
   position: absolute;
   height: 250px;
   width: 250px;

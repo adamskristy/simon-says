@@ -7,15 +7,27 @@
   <title>Simon Says</title>
   <link rel="stylesheet" href="css/style.css">
   <script defer src="js/script.js"></script>
+  <audio id="clip1">
+  	<source src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3"></source>
+  </audio>
+  <audio id="clip2">
+  	<source src="https://s3.amazonaws.com/freecodecamp/simonSound2.mp3"></source>
+  </audio>
+  <audio id="clip3">
+  	<source src="https://s3.amazonaws.com/freecodecamp/simonSound3.mp3"></source>
+  </audio>
+  <audio id="clip4">
+  	<source src="https://s3.amazonaws.com/freecodecamp/simonSound4.mp3"></source>
+  </audio>
 </head>
 <body>
 
   <div class="container">
     <div id="outer-circle">
-      <div id="red"></div>
-      <div id="blue"></div>
-      <div id="green"></div>
-      <div id="yellow"></div>
+      <div id="topright"></div>
+      <div id="bottomright"></div>
+      <div id="topleft"></div>
+      <div id="bottomleft"></div>
 
       <div id="inner-circle">
         <div id="title">SIMON</div>
@@ -23,10 +35,10 @@
         <div id="switches">
           <input type="checkbox" class="toggle" id="on">
           <button class="button" id="start">Start</button>
-          <input type="checkbox" class="toggle" id="strict">
+          <input type="checkbox" class="toggle" id="two-player">
         </div>
         <div class="toggle-text">
-          <span>POWER</span><span>STRICT</span>
+          <span>POWER</span><span>2 PLAYER</span>
         </div>
             <div class="counter-box">
               <div class="counters">
@@ -38,10 +50,6 @@
                 <div id="turn"></div>
             </div>
           </div>
-              <!-- <div class="speed-buttons">
-              <button class="arrow" id="increase-speed"></button>
-              <button class="arrow" id="decrease-speed"></button>
-            </div> -->
       </div>
     </div>
   </div>
