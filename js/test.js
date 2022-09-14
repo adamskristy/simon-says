@@ -16,24 +16,24 @@ const topLeft = document.querySelector('#topleft');
 const topRight = document.querySelector('#topright');
 const bottomLeft = document.querySelector('#bottomleft')
 const bottomRight = document.querySelector('#bottomright')
-const strictButton = document.querySelector('#strict')
+const strikeCounter = document.querySelector('#strike');
 const onButton = document.querySelector('#on')
 const startButton = document.querySelector('#start')
 
 //code written in order you play the game
 
-//when turn power on, display dash in counter
+//when turn power on, prep the game for playing and reset variables
 onButton.addEventListener('click', (event) => {
     if (onButton.checked == true){
         on = true;
         turnCounter.innerHTML = "-";
+        strikeCounter.innerHTML = "-";
     } else {
         on = false;
         turnCounter.innerHTML = "";
-        clearColor(); //when turned off all colors should turn off
-        clearInterval(intervalId); //stop game from flashing colors
+        strikeCounter.innerHTML = "";
     }
-});
+})
 
 startButton.addEventListener('click', (event) => {
     if (on || win) {
@@ -57,6 +57,7 @@ function play() {
     order.push(Math.floor(Math.random() * 4) + 1); //random number between 1 and 4
     }
     compTurn = true; //starts with computers turn delivering the sequence
+    
 
     //computer flashes a light every 800ms
     intervalId = setInterval(gameTurn, 800); //run the gameTurn function every 800ms
@@ -73,6 +74,7 @@ function gameTurn() {
         on = true;
     }
     if (compTurn) {
+        strikeCounter.innerHTML = "WAIT"
        clearColor();
        setTimeout(() =>{
         if( order[flash] == 1) one();//if first item in array is one, run one function, etc

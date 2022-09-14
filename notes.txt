@@ -1,29 +1,3 @@
-Mandatory To Pass:
-MVP - Minimum Viable Product
-
-Your dom project must meet these requirements:
-
-    Built with HTML, CSS and JavaScript (must be visual and use the DOM not the Console)
-    Hosted on Github pages
-    Commits to Github every day
-    A README.md file with explanations of the technologies used, the approach taken, a link to your live site, installation instructions, unsolved problems, etc. Here is a great guide on how to write a readme
-
-If you build a you Game must have:
-
-    Must be a two player game (either against the computer or against another player)
-
-    A win state - a way for the player to win the game
-        High score can be considered a win state
-
-    A lose state - a way for the player to lose the game
-        Example: Blackjack - a player must be able to lose all of their money with losing hands and cannot play if their bankroll is at 0
-        Example: Connect Four - the other player has won or there are no possible plays left
-
-    A way to keep playing if the game is not over
-
-    Multiple rounds to play - a round must begin, end, and there must be a way to check if the game should continue or the overall game is won or lost
-    
-
 Stretch Goals (Not Mandatory):
 Recommended Features
 
@@ -31,17 +5,87 @@ Recommended Features
     CSS to give your game a personal and fun style 
     Responsive mobile design
     Work with your instructor to determine additional stretch goals
+        -different patterns for each player
+        -both single player and two player
+        -multiple strikes
         -CMYK mode
         -increase/decrease speed
         -lightning round - one long pattern to remember?
         -accesibility - colorblindness (ask brandon)
 
 ///////////////////////////////////////////////////////////////
-How to make two player
-computer gives sequence 1
-    player1 follows sequence
-computer gives sequence 2
-    player 3 follows sequence
-if either player gets wrong, will get a strike
-get 3 strikes = losing the game
+*How to make two player*
+
+game always starts with odd
+if two player checked 
+    then play even too
+
+
+computer turn
+    if odd number
+        then play sequence1
+    else if even number
+        then play sequence2
+
+player turns
+    if odd number
+        player1 follows sequence
+            if player1 sequence == comp sequence
+                then give score
+            if not 
+                then lose
+    else if even number
+        player2 follows sequence
+            if player2 sequence == comp sequence
+                then give score
+            if not 
+                then lose
     
+
+
+    
+
+
+    
+/////////////////////////////////////////////////////
+let strike; //keep track of number of strikes player has
+let twoPlayer = false; //is two player mode on
+let playerOneOrder = []; //keep track of order player1 is pressing lights in
+let playerTwoOrder = []; //keep track of order player2 is pressing lights in
+
+
+const strikeCounter = document.querySelector('#strike');
+const twoPlayerButton = document.querySelector('#two-player')
+const numOfPlayer = document.querySelector('#player')
+
+
+//turn on two player mode
+twoPlayerButton.addEventListener('change',(event) => {
+    if (twoPlayerButton.checked == true){ //check box
+    twoPlayer = true;
+    numOfPlayer.innerHTML = "Player 1"
+    } else {
+    twoPlayer = false;
+    numOfPlayer.innerHTML = "STRIKES"
+    }
+});
+
+
+  //play one sequence
+    for (let i = 0; i < 20; i++){
+    order.push(Math.floor(Math.random() * 4) + 1); //random number between 1 and 4
+    }
+   
+    const pattern2 = order.reverse();
+
+    intervalId = setInterval(gameTurn, 800); //computer flashes a light every 800ms
+}
+
+function simonTurn(){
+    if (twoPlayer == true){
+    
+    } else {
+
+    }
+
+}
