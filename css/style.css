@@ -18,7 +18,7 @@
 
 /* Change color ids back to topleft, topright... */
 
-#topleft {
+#green {
   position: absolute;
   height: 250px;
   width: 250px;
@@ -32,21 +32,12 @@
   box-sizing: border-box;
 }
 
-#topleft-clicked {
-  position: absolute;
-  height: 250px;
-  width: 250px;
-  border-radius: 250px 0 0 0;
+#green:active,
+#green.activated {
   background: lightgreen;
-  top: 43%;
-  left: 50%;
-  margin: -250px 0px 0px -250px;
-  border-style: solid;
-  border-width: 5px;
-  box-sizing: border-box;
 }
 
-#topright {
+#red {
   position: absolute;
   height: 250px;
   width: 250px;
@@ -60,21 +51,12 @@
   box-sizing: border-box;  
 }
 
-#red clicked {
-  position: absolute;
-  height: 250px;
-  width: 250px;
-  border-radius: 0 250px 0 0;
-  background: tomato;
-  top: 43%;
-  left: 50%;
-  margin: -250px 0px 0px 0px;
-  border-style: solid;
-  border-width: 5px;
-  box-sizing: border-box;  
+#red:active,
+#red-.activated {
+  background: tomato;  
 }
 
-#bottomleft {
+#yellow {
   position: absolute;
   height: 250px;
   width: 250px;
@@ -90,23 +72,12 @@
   box-sizing: border-box;
 }
 
-#yellow clicked {
-  position: absolute;
-  height: 250px;
-  width: 250px;
-  border-radius: 0 0 0 250px;
-  -moz-border-radius: 0 0 0 250px;
-  -webkit-border-radius: 0 0 0 250px;
+#yellow:active,
+#yellow.activated {
   background: yellow;
-  top: 43%;
-  left: 50%;
-  margin: 0px -250px 0px -250px;
-  border-style: solid;
-  border-width: 5px;
-  box-sizing: border-box;
 }
 
-#bottomright {
+#blue {
   position: absolute;
   height: 250px;
   width: 250px;
@@ -122,20 +93,9 @@
   box-sizing: border-box;
 }
 
-#blue clicked{
-  position: absolute;
-  height: 250px;
-  width: 250px;
-  border-radius: 0 0 250px 0;
-  -moz-border-radius: 0 0 250px 0;
-  -webkit-border-radius: 0 0 250px 0;
+#blue:active,
+#blue.activated{
   background: lightskyblue;
-  top: 43%;
-  left: 50%;
-  margin: 0px 0px -250px 0px;
-  border-style: solid;
-  border-width: 5px;
-  box-sizing: border-box;
 }
 
 #inner-circle {
@@ -233,4 +193,8 @@
   text-align: center;
   vertical-align: middle;
   line-height: 30px;
+}
+
+.unclickable {
+  pointer-events: none;
 }

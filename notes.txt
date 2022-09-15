@@ -1,3 +1,22 @@
+**Logic**
+
+//set to computer turn
+    //increase level
+    //computer gives sequence
+//set to p1 turn
+    //p1 inputs sequence
+        //if p1 fails
+            //end game
+        //if p1 succeeds
+//set to p2 turn
+    //p2 inputs sequence
+        //if p2 failes
+            //end game
+        //if p2 succeed
+            //repeat
+
+
+///////////////////////////////////////////////////////////////
 Stretch Goals (Not Mandatory):
 Recommended Features
 
@@ -6,86 +25,11 @@ Recommended Features
     Responsive mobile design
     Work with your instructor to determine additional stretch goals
         -different patterns for each player
-        -both single player and two player
+        -both single player and two player modes
         -multiple strikes
         -CMYK mode
         -increase/decrease speed
         -lightning round - one long pattern to remember?
-        -accesibility - colorblindness (ask brandon)
+        -accesibility - colorblindness
+//////////////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////
-*How to make two player*
-
-game always starts with odd
-if two player checked 
-    then play even too
-
-
-computer turn
-    if odd number
-        then play sequence1
-    else if even number
-        then play sequence2
-
-player turns
-    if odd number
-        player1 follows sequence
-            if player1 sequence == comp sequence
-                then give score
-            if not 
-                then lose
-    else if even number
-        player2 follows sequence
-            if player2 sequence == comp sequence
-                then give score
-            if not 
-                then lose
-    
-
-
-    
-
-
-    
-/////////////////////////////////////////////////////
-let strike; //keep track of number of strikes player has
-let twoPlayer = false; //is two player mode on
-let playerOneOrder = []; //keep track of order player1 is pressing lights in
-let playerTwoOrder = []; //keep track of order player2 is pressing lights in
-
-
-const strikeCounter = document.querySelector('#strike');
-const twoPlayerButton = document.querySelector('#two-player')
-const numOfPlayer = document.querySelector('#player')
-
-
-//turn on two player mode
-twoPlayerButton.addEventListener('change',(event) => {
-    if (twoPlayerButton.checked == true){ //check box
-    twoPlayer = true;
-    numOfPlayer.innerHTML = "Player 1"
-    } else {
-    twoPlayer = false;
-    numOfPlayer.innerHTML = "STRIKES"
-    }
-});
-
-
-  //play one sequence
-    for (let i = 0; i < 20; i++){
-    order.push(Math.floor(Math.random() * 4) + 1); //random number between 1 and 4
-    }
-   
-    const pattern2 = order.reverse();
-
-    intervalId = setInterval(gameTurn, 800); //computer flashes a light every 800ms
-}
-
-function simonTurn(){
-    if (twoPlayer == true){
-    
-    } else {
-
-    }
-
-}
