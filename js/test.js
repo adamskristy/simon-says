@@ -165,7 +165,6 @@ function playerOneClick(tile){
 
     const index = playerOneSequence.push(tile) - 1;
 
-    setTimeout(() => {
         
     if (playerOneSequence[index] == sequence[index]) {
         turn = 2;
@@ -178,12 +177,11 @@ function playerOneClick(tile){
         strike = true;
         strikeCounter.innerHTML = "NO!"
         playerOneSequence = [];
-        resetGame();
         console.log('p1 wrong')
         
     } else if (playerOneSequence.length === sequence.length) {
         if (playerOneSequence.length === 20 && strike == false){
-            resetGame();
+    
             return;
         }       
         
@@ -192,8 +190,7 @@ function playerOneClick(tile){
 
             return;
         } turn = 2;
-    }, 1000);
-}
+    }
 
 function resetGame() {
     console.log('reset game')
@@ -205,3 +202,4 @@ function resetGame() {
     levelCounter.innerHTML = "-";
     strikeCounter.innerHTML = "-";
 }
+
