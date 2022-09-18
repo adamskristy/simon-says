@@ -2,7 +2,7 @@
 ###### Project Status WIP
 Mod 1 project for Per Scholas codebridge.
 
-![Simon wireframe](simages/simon-wire.png "Wireframe for simon game")
+![Simon wireframe](images/simon-wire.png "Wireframe for simon game")
 
 ## Motivation
 
