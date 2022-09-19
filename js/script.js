@@ -208,7 +208,6 @@ function resetGame() {
     level = 0;
     levelCounter.innerHTML = "";
     strikeCounter.innerHTML = "";
-    clearTimeout(game)
     clearTimeout(player)
     clearTimeout(flash)
 }
