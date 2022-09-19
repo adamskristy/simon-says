@@ -32,6 +32,3 @@ Recommended Features
         -lightning round - one long pattern to remember?
         -accesibility - colorblindness
 //////////////////////////////////////////////////////////////////
-
-
-

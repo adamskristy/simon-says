@@ -10,6 +10,7 @@ The purpose of this project is to create a game using HTML, CSS, and JavaScript,
 
 ## Description
 ![Simon Game](images/Simon_Electronic_Game.jpg "Simon Game")
+
 Simon is a short-term memory game originally invented by Ralph H. Baer and Howard j. Morrison in 1978. A series of tones and lights are played in a sequence and the player has to repeat in the exact order, or else they fail the game.
 
 ## Why Simon?

@@ -1,241 +1,215 @@
-let order = []; // keep track of the order the lights flash in
-let playerOrder = []; //keep track of order player is pressing lights in
-let flash; //integer, the number of flashed
-let turn; //keep track of what turn we're on
-let good; //boolean, how well player is doing
-let compTurn; //boolean , whether its computer or player turn
-let intervalId;
-let strict = false; //is strict mode on
-let noise = true; // using sounds
-let on = false; //power button turned on
-let win; //if player has won the game
+let sequence = []; //order pattern flashes
+let playerOneSequence = []; //order player1 clicks
+let playerTwoSequence = []; //order player2 clicks
+let turn; //whose turn it is
+let on; //power button on
+let level = 0; //what level
+
 
 //grabbing html elements to reference in JS
-const turnCounter = document.querySelector('#turn');
-const topLeft = document.querySelector('#topleft');
-const topRight = document.querySelector('#topright');
-const bottomLeft = document.querySelector('#bottomleft')
-const bottomRight = document.querySelector('#bottomright')
-const strictButton = document.querySelector('#strict')
+const levelCounter = document.querySelector('#level');
+const greenButton = document.querySelector('#green');
+const redButton = document.querySelector('#red');
+const yellowButton = document.querySelector('#yellow')
+const blueButton = document.querySelector('#blue')
 const onButton = document.querySelector('#on')
 const startButton = document.querySelector('#start')
+const twoPlayerButton = document.querySelector('#two-player')
+const numOfPlayer = document.querySelector('#player')
+const strikeCounter = document.querySelector('#strike');
+const tileContainer = document.querySelector('.container')
 
-//code written in order you play the game
 
-//when turn power on, display dash in counter
+//data-tile is stored in tile variable
+//if value is not empty string playerclick will run with tile as arguement
+tileContainer.addEventListener('click', event => {
+    const {tile} = event.target.dataset;
+
+    if (tile) playerOneClick(tile);
+});
+
+
+//randomly pick colors
+function randomTile() { 
+    console.log('create random tile')
+    const tiles = ['green', 'red', 'yellow', 'blue'];
+    //randomize selection of tiles
+    const random = tiles[Math.floor(Math.random() * tiles.length)];
+
+    return random;
+}
+
+//flash tile colors
+function flashTile(color) {
+    console.log('flash tile')
+    // template literal with html data attribute
+    const tile = document.querySelector(`[data-tile='${color}']`);
+
+    tile.classList.add('activated');
+
+    setTimeout(()=> {
+        tile.classList.remove('activated');
+    }, 300);
+}
+
+function playGame(nextSequence) {
+    //iterate over sequence array
+        nextSequence.forEach((color, index) => {
+            //activate each tile with 600ms delay
+            flash = setTimeout (() => {
+                flashTile(color);
+            }, (index + 1) * 600);
+        });
+    }
+
+// POWER ON
+//when turn power on, prep the game for playing and reset variables
 onButton.addEventListener('click', (event) => {
     if (onButton.checked == true){
         on = true;
-        turnCounter.innerHTML = "-";
+        levelCounter.innerHTML = "-";
+        strikeCounter.innerHTML = "-";
+        console.log('power on')
     } else {
         on = false;
-        turnCounter.innerHTML = "";
-        clearColor(); //when turned off all colors should turn off
-        clearInterval(intervalId); //stop game from flashing colors
-    }
-});
-
-startButton.addEventListener('click', (event) => {
-    if (on || win) {
-        play();
-    }
-});
-
-//resetting variables whe starting the game
-function play() {
-    win = false;
-    order = [];
-    playerOrder = [];
-    flash = 0;
-    intervalId = 0;
-    turn = 1;
-    turnCounter.innerHTML = 1;
-    good = true;
-
-    //filling array with random numbers to indicate order of lights
-    for (let i = 0; i < 20; i++){
-    order.push(Math.floor(Math.random() * 4) + 1); //random number between 1 and 4
-    }
-    compTurn = true; //starts with computers turn delivering the sequence
-
-    //computer flashes a light every 800ms
-    intervalId = setInterval(gameTurn, 800); //run the gameTurn function every 800ms
-}
-
-
-function gameTurn() {
-    on = false; //dont want player to click buttons while lights are flashing
-
-    if (flash == turn) { //number of flashes equals number of turn were on, computer turn is over
-        clearInterval(intervalId);
-        compTurn = false;
-        clearColor();
-        on = true;
-    }
-    if (compTurn) {
-       clearColor();
-       setTimeout(() =>{
-        if( order[flash] == 1) one();//if first item in array is one, run one function, etc
-        if( order[flash] == 2) two(); 
-        if( order[flash] == 3) three(); 
-        if( order[flash] == 4) four();
-        flash++;
-       }, 200)
-    }
-}
-
-//play audio and change/flash color
-function one() {
-    if (noise) {
-        let audio = document.getElementById('clip1');
-        audio.play();
-    }
-    noise = true;
-    topLeft.style.backgroundColor = "lightgreen";
-}
-
-function two() {
-    if (noise) {
-        let audio = document.getElementById('clip2');
-        audio.play();
-    }
-    noise = true;
-    topRight.style.backgroundColor = "tomato";
-}
-
-function three() {
-    if (noise) {
-        let audio = document.getElementById('clip3');
-        audio.play();
-    }
-    noise = true;
-    bottomLeft.style.backgroundColor = "yellow";
-}
-
-function four() {
-    if (noise) {
-        let audio = document.getElementById('clip4');
-        audio.play();
-    }
-    noise = true;
-    bottomRight.style.backgroundColor = "lightskyblue";
-}
-
-
-//set colors back to original after flashing
-function clearColor() {
-    topLeft.style.backgroundColor = "darkgreen";
-    topRight.style.backgroundColor = "darkred";
-    bottomLeft.style.backgroundColor = "goldenrod";
-    bottomRight.style.backgroundColor = "darkblue";
-}
-
-function flashColor() {
-    topLeft.style.backgroundColor = "lightgreen";
-    topRight.style.backgroundColor = "tomato";
-    bottomLeft.style.backgroundColor = "yellow";
-    bottomRight.style.backgroundColor = "lightskyblue";
-}
-
-
-topLeft.addEventListener('click',(event) => {
-    if(on){
-        playerOrder.push(1);
-        check(); //check if player was right
-        one();
-        if(!win){
-            setTimeout(() => {
-                clearColor();
-            }, 300);
-        }
+        levelCounter.innerHTML = "";
+        strikeCounter.innerHTML = "";
+        resetGame();
     }
 })
 
-topRight.addEventListener('click',(event) => {
-    if(on){
-        playerOrder.push(2);
-        check(); //check if player was right
-        two();
-        if(!win){
-            setTimeout(() => {
-                clearColor();
-            }, 300);
+startButton.addEventListener('click', startGame);
+
+function startGame(){
+    console.log('start game')
+    //all tiles flash?
+    gameTurn();
+    
+}
+
+ //nextRound
+ function gameTurn() {
+    turn = 0; //set to computer turn
+    levelCounter.innerHTML = level += 1; //increase level
+     //players unable to click while its computer turn
+    tileContainer.classList.add('unclickable')
+
+    //computers turn
+    if (turn == 0){
+        strikeCounter.innerHTML = "WAIT";
+    //start next sequence of game
+    const nextSequence = [...sequence];
+    console.log('add tile to sequence')
+    //returns random tile and add to nextSequence array
+    nextSequence.push(randomTile());
+    playGame(nextSequence);
+    
+        //start p1 turn right after comp turn
+        //total time corresponds to current level * 600ms
+        sequence = [...nextSequence];
+        game = setTimeout(() => {
+            playerTurn(level);
+        }, level * 600 + 1000);
+    } turn = 1;
+    console.log('compturn')
+}
+
+//indicates player turn
+function playerTurn() {
+    console.log('player turn')
+    tileContainer.classList.remove('unclickable')
+
+    if (turn == 1) {
+        console.log('p1 turn')
+        strikeCounter.innerHTML = "P1";
+        playerOneClick();
+    } else if (turn == 2) {
+        console.log('p2 turn')
+        strikeCounter.innerHTML = "P2";
+        playerTwoClick();
+    }
+}
+
+//handleclick
+function playerTwoClick(tile){
+    turn = 2;
+    strikeCounter.innerHTML = "P2"; 
+    console.log('p2 click')
+
+    const index = playerTwoSequence.push(tile) - 1;
+
+    if (playerTwoSequence[index] !== sequence[index]) {
+        strikeCounter.innerHTML = "NO!"
+        console.log("p2 wrong")
+        resetGame();
+    }
+
+    if (playerTwoSequence.length === sequence.length) {
+        if (playerTwoSequence.length === 20){
+            return;
         }
-    }
-})
+        playerTwoSequence = [];
 
-bottomLeft.addEventListener('click',(event) => {
-    if(on){
-        playerOrder.push(3);
-        check(); //check if player was right
-        three();
-        if(!win){
-            setTimeout(() => {
-                clearColor();
-            }, 300);
-        }
-    }
-})
-
-bottomRight.addEventListener('click',(event) => {
-    if(on){
-        playerOrder.push(4);
-        check(); //check if player was right
-        four();
-        if(!win){
-            setTimeout(() => {
-                clearColor();
-            }, 300);
-        }
-    }
-})
-
-//check if player is right
-function check(){
-    if(playerOrder[playerOrder.length - 1] !== order[playerOrder.length - 1]) // if last color player clicked is not correct
-    good = false;
-
-    //if player wins the game
-    if(playerOrder.length == 20 && good){
-        winGame();
-    }
-
-    //if player is wrong
-    if(good == false) {
-        flashColor();
-        turnCounter.innerHTML = "NO!";
         setTimeout(() => {
-            turnCounter.innerHTML = turn;
-            clearColor;
-
-            if (strict) {
-                play();
-            } else {
-                compTurn = true;
-                flash = 0;
-                playerOrder = [];
-                good = true;
-                intervalId = setInterval(gameTurn, 800);
-            }
-        }, 800)
-
-        noise = false;
-    }
-
-    //if player is right but still hasnt won the game
-    if (turn == playerOrder.length && good && !win) {
-        turn++;
-        playerOrder = [];
-        compTurn = true;
-        flash = 0;
-        turnCounter.innerHTML = turn;
-        intervalId = setInterval(gameTurn, 800);
-    }
-
-    function winGame(){
-        flashColor();
-        turnCounter.innerHTML = "WIN!";
-        on = false;
-        win = true;
-    }
+            console.log("comp turn")
+            gameTurn();
+        }, 1000)
+        return;
+    } turn = 0;
 }
+
+//handleclick
+function playerOneClick(tile){
+    turn = 1;
+    strikeCounter.innerHTML = "P1";  
+    console.log('p1 click')
+
+    const index = playerOneSequence.push(tile) - 1;
+
+    setTimeout(() => {
+
+        if (playerOneSequence[index] == sequence[index]) {
+            turn = 2;
+            setTimeout(() => {
+                playerTurn(level);
+            }, 1000)
+            return;
+            
+        } else if (playerOneSequence[index] !== sequence[index]) {
+            strike = true;
+            strikeCounter.innerHTML = "NO!"
+            console.log('p1 wrong')
+            resetGame();
+            
+            
+        } else if (playerOneSequence.length === sequence.length) {
+            if (playerOneSequence.length === 20 && strike == false){
+                resetGame();
+                return;
+            }
+            playerOneSequence = [];
+
+            player = setTimeout(() => {
+                playerTurn(level);
+                console.log('player turn2')
+            }, 800)
+            return;
+        } turn = 2;
+    }, 1000)
+}
+
+
+//reset the game to defaults
+function resetGame() {
+    console.log('reset game')
+    sequence = [];
+    playerOneSequence = [];
+    playerTwoSequence = [];
+    level = 0;
+    levelCounter.innerHTML = "";
+    strikeCounter.innerHTML = "";
+    clearTimeout(game)
+    clearTimeout(player)
+    clearTimeout(flash)
+}
+
